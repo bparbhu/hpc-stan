@@ -7,6 +7,7 @@ setup(
     install_requires=[
         'numpy',
         'scipy',
+        'dask'
         'matplotlib',
         'pandas',
         'pystan',
