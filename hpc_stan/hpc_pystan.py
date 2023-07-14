@@ -4,6 +4,7 @@ from dask.distributed import Client
 from dask_jobqueue import SLURMCluster, PBSCluster, \
     SGECluster, LSFCluster, OARCluster, MoabCluster, HTCondorCluster
 import pystan
+from utils import submit_to_cluster
 
 
 class BaseClusterPyStan(ABC):
@@ -14,6 +15,9 @@ class BaseClusterPyStan(ABC):
     @abstractmethod
     def create_cluster(self):
         pass
+
+    def run_on_cluster(self, cluster_address, username=None, password=None):
+        submit_to_cluster(cluster_address, username, password)
 
     def run_stan_model_pystan(self):
         # Your task (running the Stan model)
