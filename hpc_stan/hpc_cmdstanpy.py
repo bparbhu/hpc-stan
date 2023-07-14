@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 from dask.distributed import Client
 from dask_jobqueue import SLURMCluster, PBSCluster, \
-    SGECluster, LSFCluster, OARCluster, MOABCluster, HTCondorCluster
+    SGECluster, LSFCluster, OARCluster, MoabCluster, HTCondorCluster
 from cmdstanpy import CmdStanModel
 
 
@@ -70,7 +70,7 @@ class CmdStanOARCluster(BaseClusterCmdStan):
 
 class CmdStanMOABCluster(BaseClusterCmdStan):
     def create_cluster(self):
-        return MOABCluster()
+        return MoabCluster()
 
 
 class CmdStanHTCondorCluster(BaseClusterCmdStan):
