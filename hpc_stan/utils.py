@@ -3,6 +3,29 @@ import os
 from getpass import getpass
 import paramiko
 
+from sshtunnel import SSHTunnelForwarder
+from getpass import getpass
+
+def forward_dask_dashboard(cluster_address, remote_port=8787, local_port=8787, username=None, password=None):
+    username = username if username else input("Enter your username: ")
+    password = password if password else getpass("Enter your password: ")
+
+    # Note: by default, Dask's dashboard is served on port 8787
+    server = SSHTunnelForwarder(
+        cluster_address,
+        ssh_username=username,
+        ssh_password=password,
+        remote_bind_address=('localhost', remote_port),
+        local_bind_address=('localhost', local_port)
+    )
+
+    server.start()
+    print(f"Dashboard is being served locally at localhost:{local_port}")
+
+    # It's important to remember to close the server when it's no longer needed
+    # server.stop()
+
+
 def submit_to_cluster(cluster_address, username=None, password=None):
     username = username if username else input("Enter your username: ")
     password = password if password else getpass("Enter your password: ")
