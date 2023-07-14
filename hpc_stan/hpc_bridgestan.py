@@ -1,6 +1,8 @@
 import dask_jobqueue
 import dask.distributed
 from bridgestan import StanModel, Sampling
+from utils import submit_to_cluster
+
 
 class HPCBridgeStanBase:
     def __init__(self, stan_file_path, model_data=None, seed=1234, capture_stan_prints=True,
@@ -21,6 +23,9 @@ class HPCBridgeStanBase:
         self.cluster = self.cluster_class(**self.cluster_kwargs)
         self.client = dask.distributed.Client(self.cluster)
         self.cluster.scale(jobs=2)  # scale based on your needs
+
+    def run_on_cluster(self, cluster_address, username=None, password=None):
+        submit_to_cluster(cluster_address, username, password)
 
     def compile_model(self):
         self._setup_hpc()
