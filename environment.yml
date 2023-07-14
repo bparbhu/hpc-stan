@@ -1,4 +1,4 @@
-name: bridgestan_env
+name: hpcstan_env
 channels:
   - conda-forge
 dependencies:
