@@ -1,6 +1,6 @@
 import pytest
 from bridgestan import StanModel, Sampling
-from hpc_bridge_stan import HPCBridgeStanBase, PBSClusterBridgeStan, \
+from hpc_bridgestan import HPCBridgeStanBase, PBSClusterBridgeStan, \
     SLURMClusterBridgeStan, MOABClusterBridgeStan, LSFClusterBridgeStan, \
     SGEClusterBridgeStan, HTCondorClusterBridgeStan
 
