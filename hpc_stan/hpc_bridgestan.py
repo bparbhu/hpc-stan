@@ -74,7 +74,7 @@ class SLURMClusterBridgeStan(HPCBridgeStanBase):
 class MOABClusterBridgeStan(HPCBridgeStanBase):
     def __init__(self, stan_file_path, model_data=None, seed=1234, capture_stan_prints=True, stanc_args=[], make_args=[], cluster_kwargs={}):
         super().__init__(stan_file_path, model_data, seed, capture_stan_prints, stanc_args, make_args)
-        self.cluster_class = dask_jobqueue.MOABCluster
+        self.cluster_class = dask_jobqueue.MoabCluster
         self.cluster_kwargs = cluster_kwargs
 
 
