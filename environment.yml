@@ -1,0 +1,11 @@
+name: bridgestan_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - bridgestan
+    - pystan
+    - cmdstanpy
+    - dask-jobqueue
