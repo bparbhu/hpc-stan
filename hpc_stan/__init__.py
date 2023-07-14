@@ -1,16 +1,16 @@
 # __init__.py
 
 # For CmdStanPy
-from .hpc_stan_cmdstan import CmdStanSLURMCluster, \
+from .hpc_cmdstanpy import CmdStanSLURMCluster, \
     CmdStanPBSCluster, CmdStanSGECluster, CmdStanLSFCluster,\
     CmdStanOARCluster, CmdStanMOABCluster, CmdStanHTCondorCluster
 
 # For PyStan
-from .hpc_stan_pystan import PyStanSLURMCluster, PyStanPBSCluster, \
+from .hpc_pystan import PyStanSLURMCluster, PyStanPBSCluster, \
     PyStanSGECluster, PyStanLSFCluster, PyStanOARCluster, PyStanMOABCluster, \
     PyStanHTCondorCluster
 
 # For BridgeStan
-from .hpc_stan_bridgestan import BridgeStanSLURMCluster, \
-    BridgeStanPBSCluster, BridgeStanSGECluster, BridgeStanLSFCluster, \
-    BridgeStanOARCluster, BridgeStanMOABCluster, BridgeStanHTCondorCluster
+from .hpc_bridgestan import SLURMClusterBridgeStan, \
+    PBSClusterBridgeStan, SGEClusterBridgeStan, LSFClusterBridgeStan, \
+    BridgeStanOARCluster, MOABClusterBridgeStan, HTCondorClusterBridgeStan
