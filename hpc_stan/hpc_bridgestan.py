@@ -1,6 +1,6 @@
 import dask_jobqueue
 import dask.distributed
-from bridgestan import StanModel, Sampling
+from bridgestan import StanModel
 from utils import submit_to_cluster
 
 
@@ -47,7 +47,8 @@ class HPCBridgeStanBase:
         if self.fit is None:
             raise Exception("No fit available. Call `fit_model` first.")
         summary = self.fit.summarize()
-        return summary
+        future = self.client.submit(summary)
+        return future
 
     def log_density(self, theta_unc, propto=True, jacobian=True):
         future = self.client.submit(self.model.log_density, theta_unc, propto=propto, jacobian=jacobian)
@@ -101,4 +102,11 @@ class HTCondorClusterBridgeStan(HPCBridgeStanBase):
     def __init__(self, stan_file_path, model_data=None, seed=1234, capture_stan_prints=True, stanc_args=[], make_args=[], cluster_kwargs={}):
         super().__init__(stan_file_path, model_data, seed, capture_stan_prints, stanc_args, make_args)
         self.cluster_class = dask_jobqueue.HTCondorCluster
+        self.cluster_kwargs = cluster_kwargs
+
+
+class OARClusterBridgeStan(HPCBridgeStanBase):
+    def __init__(self, stan_file_path, model_data=None, seed=1234, capture_stan_prints=True, stanc_args=[], make_args=[], cluster_kwargs={}):
+        super().__init__(stan_file_path, model_data, seed, capture_stan_prints, stanc_args, make_args)
+        self.cluster_class = dask_jobqueue.OARCluster
         self.cluster_kwargs = cluster_kwargs
