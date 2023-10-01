@@ -13,4 +13,4 @@ from .hpc_pystan import PyStanSLURMCluster, PyStanPBSCluster, \
 # For BridgeStan
 from .hpc_bridgestan import SLURMClusterBridgeStan, \
     PBSClusterBridgeStan, SGEClusterBridgeStan, LSFClusterBridgeStan, \
-    BridgeStanOARCluster, MOABClusterBridgeStan, HTCondorClusterBridgeStan
+    OARClusterBridgeStan, MOABClusterBridgeStan, HTCondorClusterBridgeStan
